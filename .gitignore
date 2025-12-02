@@ -1,3 +1,16 @@
-/.poetry
+# banco de dados local
 /db.sqlite3
+
+# ambiente virtual
 /venv
+
+# cache e metadados
+/.poetry
+__pycache__/
+*.pyc
+npm-debug.log*
+yarn-error.log*
+.DS_Store
+
+# diretorio de dependencias
+node_modules/
