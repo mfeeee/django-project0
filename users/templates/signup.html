@@ -16,7 +16,7 @@ Cadastro
         <br>
         <h1>Sign Up</h1>
         <hr>
-        <form method="POST" action="{% url 'validate_'%}">
+        <form method="POST" action="{% url 'validate_signup'%}">
             {% csrf_token %}
             <label>Enter your name:</label>
             <input class="form-control" type="text" placeholder="name..." name = "name">
