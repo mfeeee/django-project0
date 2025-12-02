@@ -1,0 +1,39 @@
+{% extends 'base.html'%}
+
+{% block 'titulo'%}
+Cadastro
+
+{% endblock%}
+
+{% block 'body' %}
+<div class="container">
+    
+  <div class="row">
+      <div class="col-md-3">
+
+      </div>
+      <div class="col-md">
+          <br>
+          <h1>Sign Up</h1>
+          <hr>
+          <form method="POST" action="#">
+              <label>Enter your name:</label>
+              <input class="form-control" type="text" placeholder="name..." name = "name">
+              <br>
+              <label>Enter your e-mail:</label>
+              <input class="form-control" type="text" placeholder="E-mail" name = "email">
+              <br>
+              <label>Enter your password:</label>
+              <input class="form-control" type="password" placeholder="password" name = "password">
+              <br>
+              <input class="btn btn-success btn-lg" type="submit">
+              <a href="#" class="btn btn-info btn-lg">Log In</a>
+          </form>
+      </div>
+      <div class="col-md-3">
+
+      </div>
+  </div>
+
+</div>
+{% endblock %}
