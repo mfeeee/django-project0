@@ -7,4 +7,4 @@ def signup(request):
     return render(request, 'signup.html')
 
 def login(request):
-    return HttpResponse('login')
+    return ender(request, 'login.html')
