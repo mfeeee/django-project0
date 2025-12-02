@@ -32,8 +32,37 @@ Cadastro
         </form>
     </div>
     <div class="col-md-3">
+        {% if status == '1' %}
+            <div class="alert alert-danger" role="alert">
+            E-mail already exists
+            </div>
+        {% endif %}
 
-    </div>
+        {% if status == '2' %}
+            <div class="alert alert-danger" role="alert">
+            Name and Email are required
+            </div>
+        {% endif %}
+
+        {% if status == '3' %}
+            <div class="alert alert-danger" role="alert">
+            Password must have at least 8 digits
+            </div>
+        {% endif %}
+
+        {% if status == '4' %}
+            <div class="alert alert-danger" role="alert">
+            Internal Server Error
+            </div>
+        {% endif %}
+
+        {% if status == '0' %}
+            <div class="alert alert-success" role="alert">
+            Account created!
+            </div>
+        {% endif %}
+
+        </div>
 </div>
 
 </div>
