@@ -36,3 +36,23 @@ def validate_signup(request):
         return redirect('/auth/signup/?status=0')
     except:
         return redirect('/auth/signup/?status=4')
+
+def validate_login(request):
+    if request.session.get('user'):
+        return redirect('/home/')
+    
+    email = request.POST.get('email')
+    password = request.POST.get('password')
+    password = hashlib.sha256(password.encode()).hexdigest()
+    users = User.objects.filter(email = email).filter(senha = senha)
+
+    if len(users) == 0:
+        return redirect('/auth/login/?status=1')
+
+    if len(users) > 0:
+        request.session['user'] = users[0].id
+        return redirect('/home/')
+
+def logout(request):
+    request.session.flush()
+    return redirect('/auth/login/')
