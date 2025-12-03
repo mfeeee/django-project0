@@ -4,18 +4,31 @@ from django.http.response import Http404
 
 # Create your views here.
 def signup(request):
+    if request.session.get('user'):
+        return redirect('/home/')
+    
     status = request.GET.get('status')
     return render(request, 'signup.html', {'status': status})
 
 def login(request):
-    return render(request, 'login.html')
+    if request.session.get('user'):
+        return redirect('/home/')
+    
+    status = request.GET.get('status')
+    return render(request, 'login.html', {'status': status})
 
 def validate_signup(request):
+    if request.session.get('user'):
+        return redirect('/home/')
+    
     name = request.POST.get('name')
     email = request.POST.get('email')
     password = request.POST.get('password')
 
     user = User.objects.filter(email = email)
+
+    if request.session.get('user'):
+        return redirect('/home/')
 
     if len(user) > 0:
         return redirect('/auth/signup/?status=1')
