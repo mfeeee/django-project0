@@ -11,7 +11,7 @@
     <body>
         <nav class="navbar navbar-dark bg-dark">
             <a href="{% url 'home' %}" class="navbar-brand">SisIFPI</a>
-            {% if not request.path == '/auth/login/' and not request.path == '/auth/signup/' %}
+            {% if not request.path == '/auth/login/' and not request.path == '/auth/signup/' and not request.path == '/'%}
             <div class="ml-auto dropdown">
                 <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white; display: inline-block;">
                     <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Profile" width="32" height="32" style="border-radius: 50%; object-fit: cover;">
