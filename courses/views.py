@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
-from .models import Courses, Classes
+from django.http import HttpResponse
+import json
+from .models import Courses, Classes, Comments
 
 # Create your views here.
 def home(request):
@@ -21,7 +23,10 @@ def course(request, id):
 def classes(request, id):
     if request.session.get('user'):
         classes = Classes.objects.get(id = id)
-        return render(request, 'classes.html', {'classes': classes})
+        user_id = request.session.get('user')
+        comments = Comments.objects.filter(classes=classes).order_by('-date')
+
+        return render(request, 'classes.html', {'classes': classes, 'user_id': user_id, 'comments': comments})
     else:
         return redirect('/auth/login/?status=2')
 
@@ -30,12 +35,12 @@ def comments(request):
     comment = request.POST.get('comment')
     classes_id = int(request.POST.get('classes_id'))
 
-    comment_instance = comments(user_id = user_id,
+    comment_instance = Comments(user_id = user_id,
                                 comment = comment,
                                 classes_id = classes_id)
     comment_instance.save()
 
-    comments = comments.objects.filter(classes = classes_id).order_by('-data')
+    comments = Comments.objects.filter(classes = classes_id).order_by('-date')
     only_names = [i.user.name for i in comments]
     only_comments = [i.comment for i in comments]
     comments = list(zip(only_names, only_comments))
