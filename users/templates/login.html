@@ -15,6 +15,11 @@ Login
                 Invalid email or password
                 </div>
             {% endif %}
+            {% if status == '2' %}
+                <div class="alert alert-warning" role="alert">
+                Please log in before accessing the system
+                </div>
+            {% endif %}
         </div>
 
         <div class="col-md">
