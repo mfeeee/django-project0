@@ -20,7 +20,7 @@ def course(request, id):
 
 def classes(request, id):
     if request.session.get('user'):
-        classes = classess.objects.get(id = id)
+        classes = Classes.objects.get(id = id)
         return render(request, 'classes.html', {'classes': classes})
     else:
         return redirect('/auth/login/?status=2')
