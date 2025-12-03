@@ -1,0 +1,27 @@
+{% extends 'base.html'%}
+
+{% block 'title'%}
+Class
+
+{% endblock%}
+
+{% block 'body' %}
+
+<div class="container">
+  <br>
+ 
+  <h1>{{classes.name}}</h1>
+  <hr>
+  <video width="100%" controls>
+      <source src="{{classes.classes.url}}" type="video/mp4">
+    </video>
+  <hr>
+
+  <h1>Leave your comment: </h1>
+  <input id="comment" type="text" placeholder="Comment..." class="form-control">
+  <br>
+  <input onclick="#" type="button" value="Enter" class="btn btn-success btn-lg">
+  <hr>
+ 
+</div>
+{% endblock %}
