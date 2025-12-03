@@ -17,3 +17,10 @@ def course(request, id):
         return render(request, 'course.html', {'classes': classes, 'request_user': request_user})
     else:
         return redirect('/auth/login/?status=2')
+
+def classes(request, id):
+    if request.session.get('user'):
+        classes = classess.objects.get(id = id)
+        return render(request, 'classes.html', {'classes': classes})
+    else:
+        return redirect('/auth/login/?status=2')
