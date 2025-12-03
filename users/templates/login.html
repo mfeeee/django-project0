@@ -28,6 +28,7 @@ Login
             <br>
 
             <form method="POST" action="{% url 'validate_login'%}">
+                {% csrf_token %}
                 <label>Enter your email:</label>
                 <input class="form-control" type="text" placeholder="E-mail" name = "email">
                 <br>
