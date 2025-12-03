@@ -20,8 +20,51 @@ Class
   <h1>Leave your comment: </h1>
   <input id="comment" type="text" placeholder="Comment..." class="form-control">
   <br>
-  <input onclick="#" type="button" value="Enter" class="btn btn-success btn-lg">
+  <input onclick="submit_comment()" type="button" value="Enter" class="btn btn-success btn-lg">
   <hr>
+  <div id="comments">
+    {% for i in comments%}
+      <div style="background-color: red; width: 30px; height: 30px; border-radius: 15px; display: inline-block;"></div>
+      <h5 style="display: inline;">{{i.user}}</h5>
+      <p style="margin-left: 50px;">{{i.comment}}</p>
+      <hr>
+    {% endfor %}
+  </div>
  
 </div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+function submit_comment(){
+  comment = document.getElementById('comment').value
+  document.getElementById('comment').value = ""
+  $.ajax({
+    url: "{% url 'comments'%}",
+    method: 'post',
+    data: {
+      'csrfmiddlewaretoken': '{{ csrf_token }}',
+      'classes_id': "{{classes.id}}",
+        'user_id': "{{user_id}}",
+      'comment': comment
+    },
+
+    success: function(answer){
+      answer = JSON.parse(answer)
+      if(answer['status'] == "1"){
+        div_comment = document.getElementById('comments')
+        div_comment.innerHTML = ""
+        for(i = 0; i < answer['comments'].length; i++){
+          console.log('test')
+          div_comment.innerHTML += '<div style="background-color: grey; width: 30px; height: 30px; border-radius: 15px; display: inline-block;"></div>'
+          div_comment.innerHTML += '<h5 style="display: inline;">'+ answer['comments'][i][0] +'</h5>'
+          div_comment.innerHTML += '<p style="margin-left: 50px;">' + answer['comments'][i][1] + '</p>'
+          div_comment.innerHTML += '<hr>'
+        }
+      }
+
+    }
+
+  })
+}
+</script>
 {% endblock %}
