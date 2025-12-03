@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http.response import Http404
+import hashlib
+from .models import User
 
 # Create your views here.
 def signup(request):
@@ -57,7 +59,7 @@ def validate_login(request):
     email = request.POST.get('email')
     password = request.POST.get('password')
     password = hashlib.sha256(password.encode()).hexdigest()
-    users = User.objects.filter(email = email).filter(senha = senha)
+    users = User.objects.filter(email = email).filter(password = password)
 
     if len(users) == 0:
         return redirect('/auth/login/?status=1')
