@@ -7,6 +7,7 @@
 # cache e metadados
 /.poetry
 __pycache__/
+__init__.py
 *.pyc
 npm-debug.log*
 yarn-error.log*
