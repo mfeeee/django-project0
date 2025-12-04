@@ -19,8 +19,8 @@ This app was created as a simple project for my undergraduate course. Its main g
 <!-- Add screenshots here -->
 - ![Home Page (Courses)](templates/static/images/home.png)
 - ![Class Page](templates/static/images/class.png)
-- ![Login Page](images/login.png)
-- ![Signup Page](images/signup.png)
+- ![Login Page](templates/static/images/login.png)
+- ![Signup Page](templates/static/images/signup.png)
 
 ## Getting Started
 
